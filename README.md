@@ -1,2 +1,3 @@
-# react-pizza
-Created with CodeSandbox
+Черновик проекта из вебинара по созданию сайта по заказу пиццы на React.js - https://www.youtube.com/watch?v=bziVFvq8cLQ&ab_channel=ArchakovBlog
+
+Работа в процессе...
