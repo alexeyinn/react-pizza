@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { Header } from "./components";
-import { Home } from "./pages";
+import { Home, Cart } from "./pages";
 import { Route } from "react-router-dom";
 
 export default function App() {
@@ -9,7 +9,8 @@ export default function App() {
     <div className="wrapper">
       <Header />
       <div className="content">
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/cart" component={Cart} />
       </div>
     </div>
   );
