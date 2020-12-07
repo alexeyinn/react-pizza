@@ -10,7 +10,7 @@ export default function App() {
         <div className="container">
           <div className="content__top">
             <Categories
-              onClickItem={(name) => console.log(name)}
+              //onClickItem={(name) => console.log(name)}
               items={[
                 "Мясные",
                 "Вегетарианская",
@@ -19,7 +19,7 @@ export default function App() {
                 "Закрытые"
               ]}
             />
-            <SortPopup />
+            <SortPopup items={["популярности", "цене", "алфавиту"]} />
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
