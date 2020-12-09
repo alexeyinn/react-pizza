@@ -1,9 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 
-export default function PizzaBlock({ name, imageUrl, price, type }) {
+export default function PizzaBlock({ name, imageUrl, price, types }) {
   const typeNames = ["тонкое", "традиционное"];
-  const [activeType, setActiveType] = React.useState(1);
+  const [activeType, setActiveType] = React.useState(types[0]);
 
   const onSelectType = (index) => {
     setActiveType(index);
@@ -20,7 +20,8 @@ export default function PizzaBlock({ name, imageUrl, price, type }) {
               key={type}
               onClick={() => onSelectType(index)}
               className={classNames({
-                active: activeType === index
+                active: activeType === index,
+                disabled: !types.includes(index)
               })}
             >
               {type}
