@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 export default function PizzaBlock({ name, imageUrl, price, types, sizes }) {
   const availableTypes = ["тонкое", "традиционное"];
@@ -45,7 +46,7 @@ export default function PizzaBlock({ name, imageUrl, price, types, sizes }) {
                 disabled: !sizes.includes(size)
               })}
             >
-              {size}
+              {size} см.
             </li>
           ))}
         </ul>
@@ -72,3 +73,11 @@ export default function PizzaBlock({ name, imageUrl, price, types, sizes }) {
     </div>
   );
 }
+
+PizzaBlock.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  types: PropTypes.arrayOf(PropTypes.number).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired
+};
