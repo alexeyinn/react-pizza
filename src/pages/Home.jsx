@@ -20,7 +20,7 @@ const sortItems = [
 export default function Home() {
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
-  }, []);
+  });
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
 
