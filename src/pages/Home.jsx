@@ -3,6 +3,7 @@ import { Categories, SortPopup, PizzaBlock } from "../components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../redux/actions/filters";
+import { fetchPizzas } from "../redux/actions/pizzas";
 
 const categoryNames = [
   "Мясные",
@@ -18,10 +19,17 @@ const sortItems = [
 ];
 
 export default function Home() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (!items.length) {
+      dispatch(fetchPizzas());
+    }
+  }); //Если возникунут проблемы с получением данных из БД, добавить в конце ,[]
+
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
   });
-  const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
 
   return (
