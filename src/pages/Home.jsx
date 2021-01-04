@@ -7,7 +7,7 @@ import {
 } from "../components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setCategory } from "../redux/actions/filters";
+import { setCategory, setSortBy } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
 
 const categoryNames = [
@@ -30,20 +30,31 @@ export default function Home() {
     if (!items.length) {
       dispatch(fetchPizzas());
     }
-  }); //Если возникунут проблемы с получением данных из БД, добавить в конце ,[]
+  }, [category, sortBy]);
 
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
   });
+  const onSelectSortType = React.useCallback((type) => {
+    dispatch(setSortBy(type));
+  });
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-  //const { category, sortBy} = useSelector(({ filters }) => filters);
+  const { category, sortBy } = useSelector(({ filters }) => filters);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories onClickItem={onSelectCategory} items={categoryNames} />
-        <SortPopup items={sortItems} />
+        <Categories
+          activeCategory={category}
+          onClickCategory={onSelectCategory}
+          items={categoryNames}
+        />
+        <SortPopup
+          activeSortType={sortBy}
+          items={sortItems}
+          onClickSortType={onSelectSortType}
+        />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
@@ -51,7 +62,9 @@ export default function Home() {
           ? items.map((obj) => (
               <PizzaBlock key={obj.id} isLoading={true} {...obj} />
             ))
-          : Array(12).fill(0).map((_, index) => <LoadingPizzaBlock key={index} />)}
+          : Array(12)
+              .fill(0)
+              .map((_, index) => <LoadingPizzaBlock key={index} />)}
       </div>
     </div>
   );
