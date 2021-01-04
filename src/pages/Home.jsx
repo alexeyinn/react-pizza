@@ -1,5 +1,10 @@
 import React from "react";
-import { Categories, SortPopup, PizzaBlock } from "../components";
+import {
+  Categories,
+  SortPopup,
+  PizzaBlock,
+  LoadingPizzaBlock
+} from "../components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../redux/actions/filters";
@@ -31,6 +36,8 @@ export default function Home() {
     dispatch(setCategory(index));
   });
   const items = useSelector(({ pizzas }) => pizzas.items);
+  const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+  //const { category, sortBy} = useSelector(({ filters }) => filters);
 
   return (
     <div className="container">
@@ -40,7 +47,11 @@ export default function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {items && items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
+        {isLoaded
+          ? items.map((obj) => (
+              <PizzaBlock key={obj.id} isLoading={true} {...obj} />
+            ))
+          : Array(12).fill(0).map((_, index) => <LoadingPizzaBlock key={index} />)}
       </div>
     </div>
   );
