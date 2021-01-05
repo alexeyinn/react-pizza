@@ -20,17 +20,20 @@ const categoryNames = [
 const sortItems = [
   { name: "популярности", type: "popular" },
   { name: "цене", type: "price" },
-  { name: "алфавиту", type: "ABC" }
+  { name: "алфавиту", type: "name" }
 ];
 
 export default function Home() {
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    if (!items.length) {
-      dispatch(fetchPizzas());
-    }
-  }, [category, sortBy]);
+  React.useEffect(
+    (sortBy, category) => {
+      if (!items.length) {
+        dispatch(fetchPizzas());
+      }
+    },
+    [category, sortBy]
+  );
 
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));

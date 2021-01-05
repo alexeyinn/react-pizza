@@ -5,7 +5,7 @@ export const setLoaded = (payload) => ({
   payload
 });
 
-export const fetchPizzas = () => (dispatch) => {
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
   dispatch(setLoaded(false));
   axios.get("https://r4eei.csb.app/db.json").then(({ data }) => {
     dispatch(setPizzas(data.pizzas));
