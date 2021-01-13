@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
+import { addPizzaToCart } from "../redux/actions/cart";
 
 const categoryNames = [
   "Мясные",
@@ -44,6 +45,10 @@ export default function Home() {
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
+  //TODO: выяснить, почему акшен не работает при обращении напрямую
+  const handleAddPizzaToCart = (obj) => {
+    dispatch({ type: "ADD_PIZZA_CART", payload: obj });
+  };
 
   return (
     <div className="container">
@@ -64,7 +69,7 @@ export default function Home() {
         {isLoaded
           ? items.map((obj) => (
               <PizzaBlock
-                onClickAddPizza={(obj) => console.log(obj)}
+                onClickAddPizza={handleAddPizzaToCart}
                 key={obj.id}
                 isLoading={true}
                 {...obj}
