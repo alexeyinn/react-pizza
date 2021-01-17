@@ -80,17 +80,15 @@ export default function Cart() {
               <span>Очистить корзину</span>
             </div>
           </div>
-          <CartItem />
+          <CartItem name="Пепперони Фреш с перцем" type="тонкое" size={25} />
           <div className="content__items">
             <div className="cart__bottom">
               <div className="cart__bottom-details">
                 <span>
-                  {" "}
-                  Всего пицц: <b>3 шт.</b>{" "}
+                  Всего пицц: <b>3 шт.</b>
                 </span>
                 <span>
-                  {" "}
-                  Сумма заказа: <b>900 ₽</b>{" "}
+                  Сумма заказа: <b>900 ₽</b>
                 </span>
               </div>
               <div className="cart__bottom-buttons">
