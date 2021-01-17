@@ -43,6 +43,7 @@ export default function Home() {
     dispatch(setSortBy(type));
   });
   const items = useSelector(({ pizzas }) => pizzas.items);
+  const cartItems = useSelector(({ cart }) => cart.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
   //TODO: выяснить, почему акшен не работает при обращении напрямую
@@ -71,7 +72,7 @@ export default function Home() {
               <PizzaBlock
                 onClickAddPizza={handleAddPizzaToCart}
                 key={obj.id}
-                isLoading={true}
+                addedCount={cartItems[obj.id] && cartItems[obj.id].length}
                 {...obj}
               />
             ))

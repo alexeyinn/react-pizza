@@ -10,7 +10,8 @@ export default function PizzaBlock({
   price,
   types,
   sizes,
-  onClickAddPizza
+  onClickAddPizza,
+  addedCount
 }) {
   const availableTypes = ["тонкое", "традиционное"];
   const availableSizes = [26, 30, 40];
@@ -88,7 +89,11 @@ export default function PizzaBlock({
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          {
+            addedCount && (
+              <i>{addedCount}</i>
+            ) /* TODO Без наведения, кнопка пицца блока, должна быть белой */
+          }
         </Button>
       </div>
     </div>
@@ -101,7 +106,8 @@ PizzaBlock.propTypes = {
   price: PropTypes.number,
   types: PropTypes.arrayOf(PropTypes.number),
   sizes: PropTypes.arrayOf(PropTypes.number),
-  onAddPizza: PropTypes.func
+  onAddPizza: PropTypes.func,
+  addedCount: PropTypes.number
 };
 
 PizzaBlock.defaultProps = {
