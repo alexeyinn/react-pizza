@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { CartItem } from "../components";
 
 export default function Cart() {
+  const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
+
   return (
     <div className="content">
       <div className="container container--cart">
@@ -85,10 +88,10 @@ export default function Cart() {
             <div className="cart__bottom">
               <div className="cart__bottom-details">
                 <span>
-                  Всего пицц: <b>3 шт.</b>
+                  Всего пицц: <b>{totalCount} шт.</b>
                 </span>
                 <span>
-                  Сумма заказа: <b>900 ₽</b>
+                  Сумма заказа: <b>{totalPrice} ₽</b>
                 </span>
               </div>
               <div className="cart__bottom-buttons">
