@@ -5,6 +5,10 @@ import { CartItem } from "../components";
 export default function Cart() {
   const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
 
+  const addedPizzas = Object.keys(items).map((key) => {
+    return items[key][0];
+  });
+
   return (
     <div className="content">
       <div className="container container--cart">
@@ -83,7 +87,9 @@ export default function Cart() {
               <span>Очистить корзину</span>
             </div>
           </div>
-          <CartItem name="Пепперони Фреш с перцем" type="тонкое" size={25} />
+          {addedPizzas.map((obj) => (
+            <CartItem name={obj.name} type={obj.type} size={obj.size} />
+          ))}
           <div className="content__items">
             <div className="cart__bottom">
               <div className="cart__bottom-details">

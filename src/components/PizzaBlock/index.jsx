@@ -33,11 +33,13 @@ export default function PizzaBlock({
       name,
       imageUrl,
       price,
-      size: activeSize,
-      type: activeType
+      size: availableSizes[activeSize],
+      type: availableTypes[activeType]
     };
     onClickAddPizza(obj);
   };
+
+  //TODO В корзине картирнки пицца блоков, должны быть актуальны своему типу
 
   return (
     <div className="pizza-block">
