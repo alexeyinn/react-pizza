@@ -6,7 +6,7 @@ export default function Cart() {
   const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
 
   const addedPizzas = Object.keys(items).map((key) => {
-    return items[key][0];
+    return items[key].items[0];
   });
 
   return (
@@ -88,7 +88,12 @@ export default function Cart() {
             </div>
           </div>
           {addedPizzas.map((obj) => (
-            <CartItem name={obj.name} type={obj.type} size={obj.size} />
+            <CartItem
+              name={obj.name}
+              type={obj.type}
+              size={obj.size}
+              totalPrice={items[obj.id].totalPrice}
+            />
           ))}
           <div className="content__items">
             <div className="cart__bottom">
