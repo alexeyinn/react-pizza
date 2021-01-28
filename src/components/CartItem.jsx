@@ -1,6 +1,21 @@
 import React from "react";
+import Button from "./Button";
 
-export default function CartItem({ name, type, size, totalPrice, totalCount }) {
+export default function CartItem({
+  id,
+  name,
+  type,
+  size,
+  totalPrice,
+  totalCount,
+  onRemove
+}) {
+  const handleRemoveClick = () => {
+    onRemove(id);
+  };
+
+  //TODO Для правильного отображения стилей некоторых компонентов, посмотреть в сторону React-outline
+
   return (
     <div className="cart__item">
       <div className="cart__item-img">
@@ -59,7 +74,11 @@ export default function CartItem({ name, type, size, totalPrice, totalCount }) {
         <b>{totalPrice} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <div className="button button--outline button--circle">
+        <Button
+          onClick={handleRemoveClick}
+          className="button button--outline button--circle"
+          outline
+        >
           <svg
             width="10"
             height="10"
@@ -76,7 +95,7 @@ export default function CartItem({ name, type, size, totalPrice, totalCount }) {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </Button>
       </div>
     </div>
   );
