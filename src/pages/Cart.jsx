@@ -124,6 +124,7 @@ export default function Cart() {
             </div>
             {addedPizzas.map((obj) => (
               <CartItem
+                key={obj.id}
                 id={obj.id}
                 name={obj.name}
                 type={obj.type}
