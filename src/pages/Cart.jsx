@@ -165,8 +165,9 @@ export default function Cart() {
                         strokeLinejoin="round"
                       />
                     </svg>
-
-                    <span>Вернуться назад</span>
+                    <Link to="/">
+                      <span>Вернуться назад</span>
+                    </Link>
                   </a>
                   <div className="button pay-btn">
                     <span>Оплатить сейчас</span>
