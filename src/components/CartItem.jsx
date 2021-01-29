@@ -8,10 +8,20 @@ export default function CartItem({
   size,
   totalPrice,
   totalCount,
-  onRemove
+  onRemove,
+  onMinus,
+  onPlus
 }) {
   const handleRemoveClick = () => {
     onRemove(id);
+  };
+
+  const handlePlusItem = () => {
+    onPlus(id);
+  };
+
+  const handleMinusItem = () => {
+    onMinus(id);
   };
 
   //TODO Для правильного отображения стилей некоторых компонентов, посмотреть в сторону React-outline
@@ -32,7 +42,10 @@ export default function CartItem({
         </p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div
+          onClick={handleMinusItem}
+          className="button button--outline button--circle cart__item-count-minus"
+        >
           <svg
             width="10"
             height="10"
@@ -51,7 +64,10 @@ export default function CartItem({
           </svg>
         </div>
         <b>{totalCount}</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <div
+          onClick={handlePlusItem}
+          className="button button--outline button--circle cart__item-count-plus"
+        >
           <svg
             width="10"
             height="10"
