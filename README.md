@@ -1,3 +1,5 @@
-Черновик проекта из вебинара по созданию сайта по заказу пиццы на React.js - https://www.youtube.com/watch?v=bziVFvq8cLQ&ab_channel=ArchakovBlog
+Завершенный проект вебинара по созданию SPA для заказа пиццы на React.js - https://www.youtube.com/watch?v=bziVFvq8cLQ&ab_channel=ArchakovBlog
+
+Основная часть курса выполнена. Идет добавление собственных мелких доработок и исправлений.
 
 Работа в процессе...
