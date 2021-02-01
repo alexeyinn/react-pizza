@@ -26,22 +26,6 @@ const sortItems = [
 
 export default function Home() {
   const dispatch = useDispatch();
-
-  React.useEffect(
-    (sortBy, category) => {
-      if (!items.length) {
-        dispatch(fetchPizzas());
-      }
-    },
-    [category, sortBy]
-  );
-
-  const onSelectCategory = React.useCallback((index) => {
-    dispatch(setCategory(index));
-  });
-  const onSelectSortType = React.useCallback((type) => {
-    dispatch(setSortBy(type));
-  });
   const items = useSelector(({ pizzas }) => pizzas.items);
   const cartItems = useSelector(({ cart }) => cart.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
@@ -50,6 +34,17 @@ export default function Home() {
   const handleAddPizzaToCart = (obj) => {
     dispatch({ type: "ADD_PIZZA_CART", payload: obj });
   };
+
+  React.useEffect(() => {
+    dispatch(fetchPizzas(sortBy, category));
+  }, [category, sortBy]);
+
+  const onSelectCategory = React.useCallback((index) => {
+    dispatch(setCategory(index));
+  });
+  const onSelectSortType = React.useCallback((type) => {
+    dispatch(setSortBy(type));
+  });
 
   return (
     <div className="container">

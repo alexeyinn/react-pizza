@@ -6,10 +6,19 @@ export const setLoaded = (payload) => ({
 });
 
 export const fetchPizzas = (sortBy, category) => (dispatch) => {
-  dispatch(setLoaded(false));
-  axios.get("https://r4eei.csb.app/db.json").then(({ data }) => {
-    dispatch(setPizzas(data.pizzas));
+  dispatch({
+    type: "SET_LOADED",
+    payload: false
   });
+  axios
+    .get(
+      `https://my-json-server.typicode.com/alexeyinn/my-json-server/pizzas?${
+        category !== null ? `category=${category}` : ""
+      }&_sort=${sortBy.type}&_order=${sortBy.order}`
+    )
+    .then(({ data }) => {
+      dispatch(setPizzas(data));
+    });
 };
 
 export const setPizzas = (items) => ({
