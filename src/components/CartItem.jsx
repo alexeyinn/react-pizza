@@ -24,8 +24,6 @@ export default function CartItem({
     onMinus(id);
   };
 
-  //TODO Для правильного отображения стилей некоторых компонентов, посмотреть в сторону React-outline
-
   return (
     <div className="cart__item">
       <div className="cart__item-img">

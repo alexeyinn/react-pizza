@@ -39,8 +39,6 @@ export default function PizzaBlock({
     onClickAddPizza(obj);
   };
 
-  //TODO В корзине картирнки пицца блоков, должны быть актуальны своему типу
-
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
@@ -91,11 +89,7 @@ export default function PizzaBlock({
             />
           </svg>
           <span>Добавить</span>
-          {
-            addedCount && (
-              <i>{addedCount}</i>
-            ) /* TODO Без наведения, кнопка пицца блока, должна быть белой */
-          }
+          {addedCount && <i>{addedCount}</i>}
         </Button>
       </div>
     </div>
