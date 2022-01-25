@@ -3,7 +3,7 @@ import {
   Categories,
   SortPopup,
   PizzaBlock,
-  LoadingPizzaBlock
+  LoadingPizzaBlock,
 } from "../components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -15,12 +15,12 @@ const categoryNames = [
   "Вегетарианская",
   "Гриль",
   "Острые",
-  "Закрытые"
+  "Закрытые",
 ];
 const sortItems = [
   { name: "популярности", type: "popular", order: "desc" },
   { name: "цене", type: "price", order: "desc" },
-  { name: "алфавиту", type: "name", order: "asc" }
+  { name: "алфавиту", type: "name", order: "asc" },
 ];
 
 export default function Home() {
@@ -35,14 +35,15 @@ export default function Home() {
 
   React.useEffect(() => {
     dispatch(fetchPizzas(sortBy, category));
-  }, [category, sortBy]);
+  }, [category, sortBy, dispatch]);
 
-  const onSelectCategory = React.useCallback((index) => {
+  const onSelectCategory = (index) => {
     dispatch(setCategory(index));
-  });
-  const onSelectSortType = React.useCallback((type) => {
+  };
+
+  const onSelectSortType = (type) => {
     dispatch(setSortBy(type));
-  });
+  };
 
   return (
     <div className="container">
